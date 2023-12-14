@@ -374,6 +374,24 @@ library(psych)</code></pre>
 ## The following objects are masked from &#39;package:ggplot2&#39;:
 ## 
 ##     %+%, alpha</code></pre>
+<pre class="r"><code>library(multcomp)</code></pre>
+<pre><code>## Loading required package: mvtnorm
+## Loading required package: survival
+## Loading required package: TH.data
+## Loading required package: MASS
+## 
+## Attaching package: &#39;MASS&#39;
+## 
+## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     select
+## 
+## 
+## Attaching package: &#39;TH.data&#39;
+## 
+## The following object is masked from &#39;package:MASS&#39;:
+## 
+##     geyser</code></pre>
 </div>
 <div id="data-creation" class="section level2">
 <h2>Data Creation</h2>
@@ -506,6 +524,32 @@ summary(model1)</code></pre>
 ## Residuals                                                                 
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<pre class="r"><code>### (Another method of getting the contrasts: getting the actual contrast values instead of just how they fit into the ANOVA)
+
+
+# Define the contrasts
+contrasts_matrix &lt;- matrix(c(-3, 1, 1, 1, 0, -1, -1, 2), ncol = 4, byrow = TRUE)
+
+# Specify the factor variable and the planned contrasts
+contrasts_condition &lt;- glht(model1, linfct = mcp(condition = contrasts_matrix))
+
+# Summary of planned contrasts
+summary(contrasts_condition)</code></pre>
+<pre><code>## 
+##   Simultaneous Tests for General Linear Hypotheses
+## 
+## Multiple Comparisons of Means: User-defined Contrasts
+## 
+## 
+## Fit: aov(formula = reaction_time ~ condition, data = combined_data)
+## 
+## Linear Hypotheses:
+##        Estimate Std. Error t value Pr(&gt;|t|)    
+## 1 == 0   230.67      31.90   7.231   &lt;1e-10 ***
+## 2 == 0   212.54      22.56   9.423   &lt;1e-10 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## (Adjusted p values reported -- single-step method)</code></pre>
 </div>
 
 

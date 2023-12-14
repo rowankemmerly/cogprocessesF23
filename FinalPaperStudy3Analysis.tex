@@ -1,0 +1,399 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Final Paper Study 3 Analysis},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Final Paper Study 3 Analysis}
+\author{}
+\date{\vspace{-2.5em}2023-12-11}
+
+\begin{document}
+\maketitle
+
+\hypertarget{setup}{%
+\subsection{Setup}\label{setup}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## -- Attaching packages --------------------------------------- tidyverse 1.3.2 --
+## v ggplot2 3.4.0      v purrr   1.0.1 
+## v tibble  3.1.8      v dplyr   1.0.10
+## v tidyr   1.2.1      v stringr 1.5.0 
+## v readr   2.1.3      v forcats 0.5.2 
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(emmeans)}
+\FunctionTok{library}\NormalTok{(psych)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'psych'
+## 
+## The following objects are masked from 'package:ggplot2':
+## 
+##     %+%, alpha
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(multcomp)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: mvtnorm
+## Loading required package: survival
+## Loading required package: TH.data
+## Loading required package: MASS
+## 
+## Attaching package: 'MASS'
+## 
+## The following object is masked from 'package:dplyr':
+## 
+##     select
+## 
+## 
+## Attaching package: 'TH.data'
+## 
+## The following object is masked from 'package:MASS':
+## 
+##     geyser
+\end{verbatim}
+
+\hypertarget{data-creation}{%
+\subsection{Data Creation}\label{data-creation}}
+
+\textbf{reminder for future Rowan and anyone else that this is
+completely fake data that should never actually be used for a real
+paper!!}
+
+First, I am simulating the data for each of my four conditions. My goal
+was to create four groups of 40 participants (total N = 160) where the
+overall reaction time was 450 ms with a standard deviation of 50 ms. In
+line with my hypothesis, I would like the richness group to have a
+significantly higher reaction time (i.e., about 2 standard deviations or
+100 ms higher) than any other group. Here are the benchmarks I set for
+means and SDs for each of the four groups:
+
+Control: 425 ms (50) Happiness: 450 ms (50) Meaning: 475 ms (50) PR: 575
+ms (50)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Set seed for reproducibility}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{57}\NormalTok{)}
+
+\CommentTok{\# Function to generate simulated data for each of the four conditions}
+\NormalTok{generate\_simulated\_data }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(condition\_name, num\_participants, mean\_reaction\_time, std\_deviation) \{}
+  \FunctionTok{tibble}\NormalTok{(}
+    \AttributeTok{condition =}\NormalTok{ condition\_name,}
+    \AttributeTok{participant\_id =} \DecValTok{1}\SpecialCharTok{:}\NormalTok{num\_participants,}
+    \AttributeTok{reaction\_time =} \FunctionTok{rnorm}\NormalTok{(num\_participants, }\AttributeTok{mean =}\NormalTok{ mean\_reaction\_time, }\AttributeTok{sd =}\NormalTok{ std\_deviation)}
+\NormalTok{  )}
+\NormalTok{\}}
+
+\CommentTok{\# Parameters for each condition (making sure there are 160 unique cases created)}
+\NormalTok{control\_data }\OtherTok{\textless{}{-}} \FunctionTok{generate\_simulated\_data}\NormalTok{(}\StringTok{"Control"}\NormalTok{, }\DecValTok{40}\NormalTok{, }\DecValTok{425}\NormalTok{, }\DecValTok{50}\NormalTok{)}
+\NormalTok{happiness\_data }\OtherTok{\textless{}{-}} \FunctionTok{generate\_simulated\_data}\NormalTok{(}\StringTok{"Happiness"}\NormalTok{, }\DecValTok{40}\NormalTok{, }\DecValTok{450}\NormalTok{, }\DecValTok{54}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{participant\_id =}\NormalTok{ participant\_id }\SpecialCharTok{+} \FunctionTok{max}\NormalTok{(control\_data}\SpecialCharTok{$}\NormalTok{participant\_id))}
+\NormalTok{meaning\_data }\OtherTok{\textless{}{-}} \FunctionTok{generate\_simulated\_data}\NormalTok{(}\StringTok{"Meaning"}\NormalTok{, }\DecValTok{40}\NormalTok{, }\DecValTok{475}\NormalTok{, }\DecValTok{52}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{participant\_id =}\NormalTok{ participant\_id }\SpecialCharTok{+} \FunctionTok{max}\NormalTok{(happiness\_data}\SpecialCharTok{$}\NormalTok{participant\_id))}
+\NormalTok{richness\_data }\OtherTok{\textless{}{-}} \FunctionTok{generate\_simulated\_data}\NormalTok{(}\StringTok{"Psychological Richness"}\NormalTok{, }\DecValTok{40}\NormalTok{, }\DecValTok{575}\NormalTok{, }\DecValTok{55}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{participant\_id =}\NormalTok{ participant\_id }\SpecialCharTok{+} \FunctionTok{max}\NormalTok{(meaning\_data}\SpecialCharTok{$}\NormalTok{participant\_id))}
+
+
+\CommentTok{\# Combine data from all four conditions}
+\NormalTok{combined\_data }\OtherTok{\textless{}{-}} \FunctionTok{bind\_rows}\NormalTok{(control\_data, happiness\_data, meaning\_data, richness\_data)}
+
+\CommentTok{\# Convert the "condition" variable to a factor with specified levels}
+\NormalTok{combined\_data}\SpecialCharTok{$}\NormalTok{condition }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(combined\_data}\SpecialCharTok{$}\NormalTok{condition, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Control"}\NormalTok{, }\StringTok{"Happiness"}\NormalTok{, }\StringTok{"Meaning"}\NormalTok{, }\StringTok{"Psychological Richness"}\NormalTok{))}
+
+\CommentTok{\# Print the combined data}
+\FunctionTok{print}\NormalTok{(combined\_data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 160 x 3
+##    condition participant_id reaction_time
+##    <fct>              <int>         <dbl>
+##  1 Control                1          390.
+##  2 Control                2          337.
+##  3 Control                3          456.
+##  4 Control                4          526.
+##  5 Control                5          432.
+##  6 Control                6          506.
+##  7 Control                7          495.
+##  8 Control                8          381.
+##  9 Control                9          374.
+## 10 Control               10          473.
+## # ... with 150 more rows
+\end{verbatim}
+
+\hypertarget{data-analysis}{%
+\subsection{Data Analysis}\label{data-analysis}}
+
+Now I will run my analysis: a planned contrast (with coefficients
+control = 0, happiness = -1, meaning = -1, and psychological richness =
+2) testing my hypothesis that participants in the psychological richness
+condition will have higher (i.e., slower) reaction times than any other
+well-being condition.
+
+(First checking that my descriptives generally line up with what I
+wanted them to be)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{describeBy}\NormalTok{(combined\_data}\SpecialCharTok{$}\NormalTok{reaction\_time, combined\_data}\SpecialCharTok{$}\NormalTok{condition, }\AttributeTok{mat=}\ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     item                 group1 vars  n     mean       sd   median  trimmed
+## X11    1                Control    1 40 424.5502 67.16756 428.1411 425.2686
+## X12    2              Happiness    1 40 458.4398 48.38017 456.3601 458.5505
+## X13    3                Meaning    1 40 473.5943 49.58174 473.3858 470.7418
+## X14    4 Psychological Richness    1 40 572.2861 65.24677 578.4745 572.2576
+##          mad      min      max    range        skew   kurtosis        se
+## X11 72.84095 288.1843 544.0270 255.8428 -0.03207518 -0.9137963 10.620123
+## X12 51.47009 350.0421 550.6286 200.5865 -0.03213957 -0.7377662  7.649576
+## X13 50.23059 382.8008 596.7871 213.9863  0.42461303 -0.2068782  7.839562
+## X14 55.69665 445.5886 727.6205 282.0319 -0.02990278 -0.4715321 10.316420
+\end{verbatim}
+
+Running an omnibus ANOVA to start:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model }\OtherTok{\textless{}{-}} \FunctionTok{aov}\NormalTok{(reaction\_time }\SpecialCharTok{\textasciitilde{}}\NormalTok{ condition, }\AttributeTok{data =}\NormalTok{ combined\_data)}
+\FunctionTok{summary}\NormalTok{(model)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              Df Sum Sq Mean Sq F value Pr(>F)    
+## condition     3 483105  161035   47.48 <2e-16 ***
+## Residuals   156 529137    3392                   
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+Big surprise, it is incredibly significant :)
+
+Now I will run my planned contrast:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# verifying my IV levels are what I think they are (and that my turning "condition" into a factor earlier worked)}
+
+\FunctionTok{levels}\NormalTok{(combined\_data}\SpecialCharTok{$}\NormalTok{condition)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Control"                "Happiness"              "Meaning"               
+## [4] "Psychological Richness"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# here is a contrast verifying that the happiness, meaning, and richness conditions have a higher average reaction time than the control group}
+\NormalTok{c1 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{3}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{)}
+\CommentTok{\# here is my hypothesized contrast:}
+\NormalTok{c2 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{)}
+
+\CommentTok{\# combining the above 2 lines into a matrix:}
+\NormalTok{mat }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(c1,c2)}
+
+\CommentTok{\# defining the contrasts matrix:}
+\FunctionTok{contrasts}\NormalTok{(combined\_data}\SpecialCharTok{$}\NormalTok{condition) }\OtherTok{\textless{}{-}}\NormalTok{ mat}
+
+\CommentTok{\# getting results:}
+\NormalTok{model1 }\OtherTok{\textless{}{-}} \FunctionTok{aov}\NormalTok{(reaction\_time }\SpecialCharTok{\textasciitilde{}}\NormalTok{ condition, }\AttributeTok{data =}\NormalTok{ combined\_data)}
+\FunctionTok{summary}\NormalTok{(model1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              Df Sum Sq Mean Sq F value Pr(>F)    
+## condition     3 483105  161035   47.48 <2e-16 ***
+## Residuals   156 529137    3392                   
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary.aov}\NormalTok{(model1, }\AttributeTok{split=}\FunctionTok{list}\NormalTok{(}\AttributeTok{condition=}\FunctionTok{list}\NormalTok{(}\StringTok{"Control vs. Well{-}Being Conditions"} \OtherTok{=} \DecValTok{1}\NormalTok{, }\StringTok{"Psychological Richness vs. Happiness and Meaning"}\OtherTok{=}\DecValTok{2}\NormalTok{))) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                                                                Df Sum Sq
+## condition                                                       3 483105
+##   condition: Control vs. Well-Being Conditions                  1 177362
+##   condition: Psychological Richness vs. Happiness and Meaning   1 301150
+## Residuals                                                     156 529137
+##                                                               Mean Sq F value
+## condition                                                      161035   47.48
+##   condition: Control vs. Well-Being Conditions                 177362   52.29
+##   condition: Psychological Richness vs. Happiness and Meaning  301150   88.78
+## Residuals                                                        3392        
+##                                                                 Pr(>F)    
+## condition                                                      < 2e-16 ***
+##   condition: Control vs. Well-Being Conditions                2.02e-11 ***
+##   condition: Psychological Richness vs. Happiness and Meaning  < 2e-16 ***
+## Residuals                                                                 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\# (Another method of getting the contrasts: getting the actual contrast values instead of just how they fit into the ANOVA)}
+
+
+\CommentTok{\# Define the contrasts}
+\NormalTok{contrasts\_matrix }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{3}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{, }\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{), }\AttributeTok{ncol =} \DecValTok{4}\NormalTok{, }\AttributeTok{byrow =} \ConstantTok{TRUE}\NormalTok{)}
+
+\CommentTok{\# Specify the factor variable and the planned contrasts}
+\NormalTok{contrasts\_condition }\OtherTok{\textless{}{-}} \FunctionTok{glht}\NormalTok{(model1, }\AttributeTok{linfct =} \FunctionTok{mcp}\NormalTok{(}\AttributeTok{condition =}\NormalTok{ contrasts\_matrix))}
+
+\CommentTok{\# Summary of planned contrasts}
+\FunctionTok{summary}\NormalTok{(contrasts\_condition)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##   Simultaneous Tests for General Linear Hypotheses
+## 
+## Multiple Comparisons of Means: User-defined Contrasts
+## 
+## 
+## Fit: aov(formula = reaction_time ~ condition, data = combined_data)
+## 
+## Linear Hypotheses:
+##        Estimate Std. Error t value Pr(>|t|)    
+## 1 == 0   230.67      31.90   7.231   <1e-10 ***
+## 2 == 0   212.54      22.56   9.423   <1e-10 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## (Adjusted p values reported -- single-step method)
+\end{verbatim}
+
+\end{document}
