@@ -1,0 +1,136 @@
+---
+title: "Final Paper Study 3 Analysis"
+output: html_document
+date: "2023-12-11"
+---
+
+## Setup
+
+```{r setup}
+
+
+library(tidyverse)
+library(emmeans)
+library(psych)
+library(multcomp)
+```
+
+## Data Creation
+
+**reminder for future Rowan and anyone else that this is completely fake data that should never actually be used for a real paper!!**
+
+First, I am simulating the data for each of my four conditions. My goal was to create four groups of 40 participants (total N = 160) where the overall reaction time was 450 ms with a standard deviation of 50 ms. In line with my hypothesis, I would like the richness group to have a significantly higher reaction time (i.e., about 2 standard deviations or 100 ms higher) than any other group. Here are the benchmarks I set for means and SDs for each of the four groups:
+
+Control: 425 ms (50)
+Happiness: 450 ms (50)
+Meaning: 475 ms (50)
+PR: 575 ms (50)
+
+```{r data-creation}
+
+
+# Set seed for reproducibility
+set.seed(57)
+
+# Function to generate simulated data for each of the four conditions
+generate_simulated_data <- function(condition_name, num_participants, mean_reaction_time, std_deviation) {
+  tibble(
+    condition = condition_name,
+    participant_id = 1:num_participants,
+    reaction_time = rnorm(num_participants, mean = mean_reaction_time, sd = std_deviation)
+  )
+}
+
+# Parameters for each condition (making sure there are 160 unique cases created)
+control_data <- generate_simulated_data("Control", 40, 425, 50)
+happiness_data <- generate_simulated_data("Happiness", 40, 450, 54) %>%
+  mutate(participant_id = participant_id + max(control_data$participant_id))
+meaning_data <- generate_simulated_data("Meaning", 40, 475, 52) %>%
+  mutate(participant_id = participant_id + max(happiness_data$participant_id))
+richness_data <- generate_simulated_data("Psychological Richness", 40, 575, 55) %>%
+  mutate(participant_id = participant_id + max(meaning_data$participant_id))
+
+
+# Combine data from all four conditions
+combined_data <- bind_rows(control_data, happiness_data, meaning_data, richness_data)
+
+# Convert the "condition" variable to a factor with specified levels
+combined_data$condition <- factor(combined_data$condition, levels = c("Control", "Happiness", "Meaning", "Psychological Richness"))
+
+# Print the combined data
+print(combined_data)
+
+```
+
+## Data Analysis
+
+Now I will run my analysis: a planned contrast (with coefficients control = 0, happiness = -1, meaning = -1, and psychological richness = 2) testing my hypothesis that participants in the psychological richness condition will have higher (i.e., slower) reaction times than any other well-being condition.
+
+(First checking that my descriptives generally line up with what I wanted them to be)
+
+```{r descriptives}
+
+describeBy(combined_data$reaction_time, combined_data$condition, mat=TRUE)
+
+```
+
+
+Running an omnibus ANOVA to start:
+
+```{r anova}
+
+model <- aov(reaction_time ~ condition, data = combined_data)
+summary(model)
+
+```
+
+Big surprise, it is incredibly significant :)
+
+
+Now I will run my planned contrast:
+
+```{r contrast-prep}
+
+# verifying my IV levels are what I think they are (and that my turning "condition" into a factor earlier worked)
+
+levels(combined_data$condition)
+
+```
+
+
+```{r contrasts}
+
+
+# here is a contrast verifying that the happiness, meaning, and richness conditions have a higher average reaction time than the control group
+c1 <- c(-3, 1, 1, 1)
+# here is my hypothesized contrast:
+c2 <- c(0,-1,-1,2)
+
+# combining the above 2 lines into a matrix:
+mat <- cbind(c1,c2)
+
+# defining the contrasts matrix:
+contrasts(combined_data$condition) <- mat
+
+# getting results:
+model1 <- aov(reaction_time ~ condition, data = combined_data)
+summary(model1)
+summary.aov(model1, split=list(condition=list("Control vs. Well-Being Conditions" = 1, "Psychological Richness vs. Happiness and Meaning"=2))) 
+
+### (Another method of getting the contrasts: getting the actual contrast values instead of just how they fit into the ANOVA)
+
+
+# Define the contrasts
+contrasts_matrix <- matrix(c(-3, 1, 1, 1, 0, -1, -1, 2), ncol = 4, byrow = TRUE)
+
+# Specify the factor variable and the planned contrasts
+contrasts_condition <- glht(model1, linfct = mcp(condition = contrasts_matrix))
+
+# Summary of planned contrasts
+summary(contrasts_condition)
+
+
+
+```
+
+
